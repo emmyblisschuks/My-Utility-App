@@ -1,0 +1,197 @@
+<!<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Countdown Timer</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    color: #333;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #00796b;
+    text-align: center;
+    font-weight: 600;
+}
+
+label {
+    font-size: 1.2rem;
+    color: #333;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+input[type="number"] {
+    width: 100%;
+    max-width: 250px;
+    height: 40px;
+    font-size: 1.2rem;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 2px solid #e0f7fa;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input[type="number"]:focus {
+    border-color: #00796b;
+}
+
+button {
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: white;
+    background-color: #009688;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+button:hover {
+    background-color: #004d40;
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+div#time {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #333;
+    background-color: #ffffff;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    min-width: 250px;
+    text-align: center;
+    border: 2px solid #e0f7fa;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+div#time:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+a {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #009688;
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+a:hover {
+    background-color: #004d40;
+    transform: scale(1.05);
+}
+
+/* Container for form elements */
+form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Responsive design */
+@media (max-width: 400px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    input[type="number"] {
+        max-width: 200px;
+        font-size: 1rem;
+        height: 35px;
+    }
+
+    button {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+
+    div#time {
+        font-size: 1.5rem;
+        min-width: 200px;
+        padding: 10px 15px;
+    }
+
+    a {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+
+    form {
+        max-width: 300px;
+    }
+}
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Countdown Timer</h1>
+    <form>
+        <label for="seconds">Enter seconds:</label><br>
+        <input type="number" id="seconds" aria-label="Enter seconds for countdown"><br><br>
+        <button type="button" onclick="startTimer()">Start</button><br><br>
+        <div id="time" aria-live="polite"></div>
+    </form>
+    <a href="index.html">Back to Home</a>
+    <script>
+        let countdown;
+        function startTimer() {
+            const seconds = parseInt(document.getElementById("seconds").value);
+            const display = document.getElementById("time");
+            clearInterval(countdown);
+            let timeLeft = seconds;
+
+            countdown = setInterval(() => {
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    display.textContent = "Time's up!";
+                } else {
+                    display.textContent = timeLeft + " seconds remaining";
+                    timeLeft--;
+                }
+            }, 1000);
+        }
+    </script>
+    <script src="script.js"></script>:
+</body>
+</html>

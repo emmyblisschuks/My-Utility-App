@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Utility App</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* style.css */
+
+/* Reset default margins and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+}
+
+/* Header styling */
+h1 {
+    color: #2c3e50;
+    margin: 20px 0;
+    font-size: 2.5em;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Paragraph styling */
+p {
+    color: #34495e;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+/* List styling */
+ul {
+    list-style: none;
+    width: 100%;
+    max-width: 600px;
+}
+
+/* List item styling */
+li {
+    margin: 10px 0;
+}
+
+/* Link styling */
+a {
+    display: block;
+    padding: 15px 20px;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-size: 1.1em;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Link hover effect */
+a:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Link active effect */
+a:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    a {
+        font-size: 1em;
+        padding: 12px 15px;
+    }
+}
+/* ===== Mobile-First (Default for Android) ===== */
+body {
+  font-size: 14px;
+  margin: 0;
+  padding: 10px;
+}
+
+.header {
+  padding: 15px 0;
+}
+
+/* ===== Tablet (Portrait) ===== */
+@media (min-width: 481px) and (max-width: 768px) {
+  body {
+    font-size: 15px;
+    padding: 15px;
+  }
+}
+
+/* ===== Small Laptops & Large Tablets ===== */
+@media (min-width: 769px) and (max-width: 1024px) {
+  body {
+    font-size: 16px;
+    padding: 20px;
+  }
+}
+
+/* ===== Windows Desktop (Large Screens) ===== */
+@media (min-width: 1025px) {
+  body {
+    font-size: 18px;
+    max-width: 1200px;
+    margin: 0 auto; /* Centers content */
+  }
+  
+  .header {
+    padding: 25px 0;
+  }
+}
+
+/* ===== Special Cases ===== */
+/* High-density (Retina) Displays */
+@media (-webkit-min-device-pixel-ratio: 2), 
+       (min-resolution: 192dpi) {
+  img {
+    /* Serve 2x images for retina screens */
+    max-width: 50%;
+    height: auto;
+  }
+}
+
+/* Landscape Mobile (Android) */
+@media (max-width: 768px) and (orientation: landscape) {
+  .header {
+    padding: 10px 0;
+  }
+}
+    </style>
+</head>
+<body>
+    <h1>My Utility App</h1>
+
+    <p>Select a tool:</p>
+
+    <ul>
+        <li><a href="calculator.html">Calculator</a></li>
+        <li><a href="clock.html">Digital Clock</a></li>
+        <li><a href="timer.html">Countdown Timer</a></li>
+        <li><a href="stopwatch.html">Stopwatch</a></li>
+        <li><a href="todo.html">To-Do List</a></li>
+        <li><a href="calendar.html">Calendar</a></li>
+        <li><a href="bmi.html">BMI Calculator</a></li>
+        <li><a href="age.html">Age Calculator</a></li>
+        <li><a href="password.html">Password Generator</a></li>
+        <li><a href="notes.html">Quick Notes</a></li>
+    </ul>
+    <script src="script.js"></script>:
+</body>
+</html>

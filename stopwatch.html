@@ -1,0 +1,171 @@
+<!<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stopwatch</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    color: #333;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #00796b;
+    text-align: center;
+    font-weight: 600;
+}
+
+div#display {
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: #333;
+    background-color: #ffffff;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    min-width: 250px;
+    text-align: center;
+    border: 2px solid #e0f7fa;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+div#display:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+button {
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: white;
+    background-color: #009688;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    margin: 5px;
+}
+
+button:hover {
+    background-color: #004d40;
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+/* Specific style for Reset button */
+button[onclick="resetStopwatch()"] {
+    background-color: #b0bec5;
+    color: #333;
+}
+
+button[onclick="resetStopwatch()"]:hover {
+    background-color: #90a4ae;
+}
+
+a {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #009688;
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    margin-top: 20px;
+}
+
+a:hover {
+    background-color: #004d40;
+    transform: scale(1.05);
+}
+
+/* Container for buttons */
+div.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Responsive design */
+@media (max-width: 400px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    div#display {
+        font-size: 2rem;
+        min-width: 200px;
+        padding: 10px 15px;
+    }
+
+    button {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+
+    a {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+}
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Stopwatch</h1>
+    <div id="display" aria-live="polite">0.0 seconds</div><br>
+    <div class="buttons">
+        <button type="button" onclick="startStopwatch()">Start</button>
+        <button type="button" onclick="stopStopwatch()">Stop</button>
+        <button type="button" onclick="resetStopwatch()">Reset</button>
+    </div>
+    <a href="index.html">Back to Home</a>
+    <script>
+        let startTime, timerInterval;
+        let running = false;
+
+        function startStopwatch() {
+            if (running) return;
+            running = true;
+            startTime = Date.now();
+            timerInterval = setInterval(() => {
+                const elapsed = Date.now() - startTime;
+                document.getElementById("display").textContent = (elapsed / 1000).toFixed(1) + " seconds";
+            }, 100);
+        }
+
+        function stopStopwatch() {
+            running = false;
+            clearInterval(timerInterval);
+        }
+
+        function resetStopwatch() {
+            stopStopwatch();
+            document.getElementById("display").textContent = "0.0 seconds";
+        }
+    </script>
+</body>
+</html>

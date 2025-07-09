@@ -1,0 +1,213 @@
+<!<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BMI Calculator</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    color: #333;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #00796b;
+    text-align: center;
+    font-weight: 600;
+}
+
+label {
+    font-size: 1.2rem;
+    color: #333;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+input[type="number"] {
+    width: 100%;
+    max-width: 250px;
+    height: 40px;
+    font-size: 1.1rem;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 2px solid #e0f7fa;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input[type="number"]:focus {
+    border-color: #00796b;
+}
+
+button {
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: white;
+    background-color: #009688;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    margin-bottom: 20px;
+}
+
+button:hover {
+    background-color: #004d40;
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+div#result {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #333;
+    background-color: #ffffff;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    min-width: 250px;
+    text-align: center;
+    border: 2px solid #e0f7fa;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+div#result:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+a {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #009688;
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    margin-top: 20px;
+}
+
+a:hover {
+    background-color: #004d40;
+    transform: scale(1.05);
+}
+
+/* Container for form elements */
+form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Responsive design */
+@media (max-width: 400px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    input[type="number"] {
+        max-width: 200px;
+        font-size: 1rem;
+        height: 35px;
+    }
+
+    label {
+        font-size: 1rem;
+    }
+
+    button {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+
+    div#result {
+        font-size: 1.5rem;
+        min-width: 200px;
+        padding: 10px 15px;
+    }
+
+    a {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+
+    form {
+        max-width: 300px;
+    }
+}
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>BMI Calculator</h1>
+    <form>
+        <label for="weight">Weight (kg):</label><br>
+        <input type="number" id="weight" aria-label="Enter weight in kilograms" placeholder="Enter weight"><br><br>
+        <label for="height">Height (cm):</label><br>
+        <input type="number" id="height" aria-label="Enter height in centimeters" placeholder="Enter height"><br><br>
+        <button type="button" onclick="calculateBMI()">Calculate</button><br><br>
+        <button type="button" onclick="resetForm()">Reset</button>
+        <div id="result" aria-live="polite"></div>
+    </form>
+    <a href="index.html">Back to Home</a>
+    <script>
+        function calculateBMI() {
+            const weight = parseFloat(document.getElementById("weight").value);
+            const height = parseFloat(document.getElementById("height").value) / 100; // cm to meters
+            const result = document.getElementById("result");
+
+            if (isNaN(weight) || isNaN(height) || height === 0) {
+                result.textContent = "Please enter valid values.";
+                return;
+            }
+
+            const bmi = weight / (height * height);
+            let status = "";
+
+            if (bmi < 18.5) status = "Underweight";
+            else if (bmi < 24.9) status = "Normal weight";
+            else if (bmi < 29.9) status = "Overweight";
+            else status = "Obese";
+
+            result.textContent = "BMI: " + bmi.toFixed(2) + " (" + status + ")";
+        }
+        function resetForm() {
+    document.getElementById("weight").value = "";
+    document.getElementById("height").value = "";
+    document.getElementById("result").textContent = "";
+}
+    </script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #00796b;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        form[name="calc"] {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 350px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            height: 60px;
+            font-size: 1.8rem;
+            text-align: right;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #e0f7fa;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            color: #333;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            outline: none;
+        }
+
+        button {
+            width: 60px;
+            height: 60px;
+            margin: 5px;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: white;
+            background-color: #009688;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            background-color: #004d40;
+            transform: scale(1.05);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        /* Specific styles for operator buttons */
+        button[onclick*="'+"], 
+        button[onclick*="'-"], 
+        button[onclick*="'*"], 
+        button[onclick*="'/"] {
+            background-color: #00796b;
+        }
+
+        button[onclick*="'+"]:hover, 
+        button[onclick*="'-"]:hover, 
+        button[onclick*="'*"]:hover, 
+        button[onclick*="'/"]:hover {
+            background-color: #004d40;
+        }
+
+        /* Style for equals button */
+        button[onclick*="eval"] {
+            background-color: #00796b;
+            font-weight: 600;
+        }
+
+        button[onclick*="eval"]:hover {
+            background-color: #004d40;
+        }
+
+        /* Style for DEL and clear buttons */
+        button[onclick*="slice"], 
+        button[onclick*="''"] {
+            background-color: #b0bec5;
+            color: #333;
+        }
+
+        button[onclick*="slice"]:hover, 
+        button[onclick*="''"]:hover {
+            background-color: #90a4ae;
+        }
+
+        /* Style for the Back to Home link */
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #009688;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        a:hover {
+            background-color: #004d40;
+            transform: scale(1.05);
+        }
+
+        /* Grid layout for buttons */
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            width: 100%;
+        }
+
+        /* Responsive design */
+        @media (max-width: 400px) {
+            form[name="calc"] {
+                max-width: 300px;
+            }
+
+            button {
+                width: 50px;
+                height: 50px;
+                font-size: 1rem;
+            }
+
+            input[type="text"] {
+                font-size: 1.5rem;
+                height: 50px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculator</h1>
+
+    <form name="calc">
+        <input type="text" name="display" id="display" readonly>
+        <div class="button-grid">
+            <button type="button" onclick="calc.display.value = ''">clear</button>
+            <button type="button" onclick="calc.display.value = calc.display.value.slice(0, -1)">DEL</button>
+            <button type="button" onclick="calc.display.value += '/'">/</button>
+            <button type="button" onclick="calc.display.value += '*'">*</button>
+            <button type="button" onclick="calc.display.value += '7'">7</button>
+            <button type="button" onclick="calc.display.value += '8'">8</button>
+            <button type="button" onclick="calc.display.value += '9'">9</button>
+            <button type="button" onclick="calc.display.value += '-'">-</button>
+            <button type="button" onclick="calc.display.value += '4'">4</button>
+            <button type="button" onclick="calc.display.value += '5'">5</button>
+            <button type="button" onclick="calc.display.value += '6'">6</button>
+            <button type="button" onclick="calc.display.value += '+'">+</button>
+            <button type="button" onclick="calc.display.value += '1'">1</button>
+            <button type="button" onclick="calc.display.value += '2'">2</button>
+            <button type="button" onclick="calc.display.value += '3'">3</button>
+            <button type="button" onclick="calc.display.value = eval(calc.display.value)">=</button>
+            <button type="button" onclick="calc.display.value += '0'">0</button>
+            <button type="button" onclick="calc.display.value += '.'">.</button>
+        </div>
+        <a href="index.html">Back to Home</a>
+    </form>
+
+    <script src="script.js"></script>
+</body>
+</html>

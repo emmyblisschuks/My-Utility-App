@@ -1,0 +1,257 @@
+<!<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quick Notes</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    color: #333;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #00796b;
+    text-align: center;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin: 20px 0 10px;
+    color: #00796b;
+    font-weight: 500;
+    text-align: center;
+}
+
+textarea {
+    width: 100%;
+    max-width: 350px;
+    height: 100px;
+    font-size: 1.1rem;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 2px solid #e0f7fa;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    resize: none;
+    transition: border-color 0.3s ease;
+}
+
+textarea:focus {
+    border-color: #00796b;
+}
+
+textarea::placeholder {
+    color: #555;
+    font-weight: 400;
+}
+
+button {
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: white;
+    background-color: #009688;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    margin-bottom: 20px;
+}
+
+button:hover {
+    background-color: #004d40;
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+div#notes {
+    width: 100%;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+div#notes > div {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #333;
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 2px solid #e0f7fa;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    word-break: break-all; /* Ensures long notes wrap */
+}
+
+div#notes > div:hover {
+    background-color: #e0f7fa;
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+a {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #009688;
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    margin-top: 20px;
+}
+
+a:hover {
+    background-color: #004d40;
+    transform: scale(1.05);
+}
+
+/* Container for form elements */
+form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Responsive design */
+@media (max-width: 400px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h3 {
+        font-size: 1.3rem;
+    }
+
+    textarea {
+        max-width: 300px;
+        font-size: 1rem;
+        height: 80px;
+    }
+
+    button {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+
+    div#notes {
+        max-width: 300px;
+    }
+
+    div#notes > div {
+        font-size: 1rem;
+        padding: 12px;
+    }
+
+    a {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+
+    form {
+        max-width: 300px;
+    }
+}
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Quick Notes</h1>
+    <form>
+        <textarea id="note" rows="4" cols="40" placeholder="Type your note here..." aria-label="Type your note here"></textarea><br><br>
+        <button type="button" onclick="saveNote()">Save Note</button>
+        <button type="button" onclick="clearNotes()">Clear All</button>
+    </form>
+    <h3>Your Notes (click to delete):</h3>
+    <div id="notes" aria-live="polite"></div>
+    <a href="index.html">Back to Home</a>
+    <script>
+        function saveNote() {
+            const text = document.getElementById("note").value.trim();
+            if (text === "") return;
+
+            const noteBox = document.createElement("div");
+            noteBox.textContent = text;
+            noteBox.onclick = function () {
+                noteBox.remove();
+            };
+
+            document.getElementById("notes").appendChild(noteBox);
+            document.getElementById("note").value = "";
+        }
+        function saveNote() {
+    const text = document.getElementById("note").value.trim();
+    if (text === "") return;
+
+    const noteBox = document.createElement("div");
+    noteBox.textContent = text;
+    noteBox.onclick = function () {
+        noteBox.remove();
+        saveNotesToStorage();
+    };
+
+    document.getElementById("notes").appendChild(noteBox);
+    document.getElementById("note").value = "";
+    saveNotesToStorage();
+}
+
+function saveNotesToStorage() {
+    const notes = Array.from(document.getElementById("notes").children).map(note => note.textContent);
+    localStorage.setItem("notes", JSON.stringify(notes));
+}
+
+function loadNotes() {
+    const notes = JSON.parse(localStorage.getItem("notes") || "[]");
+    const notesContainer = document.getElementById("notes");
+    notes.forEach(text => {
+        const noteBox = document.createElement("div");
+        noteBox.textContent = text;
+        noteBox.onclick = function () {
+            noteBox.remove();
+            saveNotesToStorage();
+        };
+        notesContainer.appendChild(noteBox);
+    });
+    function clearNotes() {
+    document.getElementById("notes").innerHTML = "";
+}
+}
+
+window.onload = loadNotes;
+    </script>
+</body>
+</html>

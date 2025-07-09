@@ -1,0 +1,185 @@
+<!<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calendar</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    color: #333;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: #00796b;
+    text-align: center;
+    font-weight: 600;
+}
+
+h2#monthYear {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+ul#calendar {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    width: 100%;
+    max-width: 600px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border: 2px solid #e0f7fa;
+}
+
+ul#calendar li {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #333;
+    background-color: #f9f9f9;
+    padding: 15px;
+    text-align: center;
+    border-radius: 8px;
+    border: 1px solid #e0f7fa;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    cursor: default;
+}
+
+ul#calendar li:hover {
+    background-color: #e0f7fa;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+ul#calendar li.today {
+    background-color: #009688;
+    color: white;
+    border-color: #00796b;
+    font-weight: 600;
+}
+
+ul#calendar li.today:hover {
+    background-color: #004d40;
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+a {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #009688;
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    margin-top: 20px;
+}
+
+a:hover {
+    background-color: #004d40;
+    transform: scale(1.05);
+}
+
+/* Day labels for the calendar */
+ul#calendar::before {
+    content: "Sun Mon Tue Wed Thu Fri Sat";
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #00796b;
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e0f7fa;
+}
+
+/* Responsive design */
+@media (max-width: 400px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2#monthYear {
+        font-size: 1.5rem;
+    }
+
+    ul#calendar {
+        max-width: 300px;
+        gap: 5px;
+        padding: 15px;
+    }
+
+    ul#calendar li {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    ul#calendar::before {
+        font-size: 0.8rem;
+    }
+
+    a {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+}
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Calendar</h1>
+    <h2 id="monthYear" aria-live="polite"></h2>
+    <ul id="calendar" aria-label="Calendar for current month"></ul>
+    <a href="index.html">Back to Home</a>
+    <script>
+        function generateCalendar() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = now.getMonth();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const monthNames = ["January", "February", "March", "April", "May", "June",
+                                "July", "August", "September", "October", "November", "December"];
+
+            document.getElementById("monthYear").textContent = monthNames[month] + " " + year;
+
+            const calendar = document.getElementById("calendar");
+            calendar.innerHTML = "";
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const li = document.createElement("li");
+                li.textContent = day;
+                if (day === now.getDate()) {
+                    li.classList.add("today");
+                }
+                calendar.appendChild(li);
+            }
+        }
+
+        window.onload = generateCalendar;
+    </script>
+</body>
+</html>
